@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright © Websolute spa. All rights reserved.
- * See COPYING.txt for license details.
+ * See LICENSE and/or COPYING.txt for license details.
  */
 
 declare(strict_types=1);
@@ -112,7 +112,6 @@ class DownloadRepository implements DownloadRepositoryInterface
         $collection = $this->collectionFactory->create();
         $collection->addFieldToFilter(DownloadModel::ACTIVITY_ID, ['eq' => $activityId]);
         $collection->addFieldToFilter(DownloadModel::DOWNLOADER_TYPE, ['eq' => $downloaderType]);
-        $collection->load();
 
         /** @var DownloadModel $download */
         if ($collection->count()) {
@@ -151,7 +150,6 @@ class DownloadRepository implements DownloadRepositoryInterface
         $collection = $this->collectionFactory->create();
         $collection->addFieldToFilter(DownloadModel::ACTIVITY_ID, ['eq' => $activityId]);
         $collection->addFieldToFilter(DownloadModel::DOWNLOADER_TYPE, ['eq' => $downloaderType]);
-        $collection->load();
 
         if (!$collection->count()) {
             throw new NoSuchEntityException(__(
@@ -176,7 +174,6 @@ class DownloadRepository implements DownloadRepositoryInterface
     {
         $collection = $this->collectionFactory->create();
         $collection->addFieldToFilter(DownloadModel::ACTIVITY_ID, ['eq' => $activityId]);
-        $collection->load();
 
         /** @var DownloadInterface[] $downloads */
         $downloads = $collection->getItems();
